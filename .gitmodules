@@ -1,4 +1,7 @@
 [submodule "tests/test_helper/bats-support"]
+	path = bats
+	url = git clone git@github.com:sstephenson/bats.git
+[submodule "tests/test_helper/bats-support"]
 	path = tests/test_helper/bats-support
 	url = https://github.com/ztombol/bats-support
 [submodule "tests/test_helper/bats-assert"]
