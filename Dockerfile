@@ -1,6 +1,6 @@
-FROM java:openjdk-8-jdk-alpine
+FROM openjdk:8-jdk-alpine
 
-RUN apk add --no-cache git openssh-client curl zip unzip bash ttf-dejavu coreutils
+RUN apk add --no-cache git openssh-client curl unzip bash ttf-dejavu coreutils
 
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
@@ -36,10 +36,11 @@ COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groov
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.18}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.25}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=bae4886c0748294aac021c9b4146f47f690c3a12
+ARG JENKINS_SHA
+ENV JENKINS_SHA ${JENKINS_SHA:-1c4a750b7d7102c5fc9b78550fd3dcc93d7374da}
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war

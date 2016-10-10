@@ -9,6 +9,7 @@ node {
     	sh "docker build --build-arg JENKINS_VERSION=\"${JENKINS_VERSION}\" --build-arg JENKINS_SHA=\"${JENKINS_SHA}\" -t ${dockerImageName} ."
 
 	  stage 'Test'
+	  	sh "git submodule update --init --recursive"
     	sh "rm -Rf bats && git clone git@github.com:sstephenson/bats.git"
     	sh "bats/bin/bats tests/tests.bats"
     
