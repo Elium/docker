@@ -1,4 +1,18 @@
-# Official Jenkins Docker image
+# Official Jenkins Docker image (w/ some updates)
+ 
+-----
+# Elium Stuff
+[eliumio/docker-jenkins](https://hub.docker.com/r/eliumio/docker-jenkins) is triggered by pushing tag.
+ 
+### Publish new version
+eg: version `2.18`
+ 
+1. Retrieve VERSION and SHA of war file (http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/2.18)
+2. Update `JENKINS_VERSION=2.18` in `Dockerfile`
+3. Update `JENKINS_SHA=bae4886c0748294aac021c9b4146f47f690c3a12` in `Dockerfile`
+4. Commit and push
+5. Tag to `2.18` and push tags
+---
 
 The Jenkins Continuous Integration and Delivery server.
 
