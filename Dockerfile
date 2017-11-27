@@ -64,6 +64,14 @@ EXPOSE ${agent_port}
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
+ENV DOCKER_COMPOSE_VERSION 1.10.1
+
+# Add docker-compose
+RUN apk --update add docker py-pip py-yaml ca-certificates openssl &&\
+    pip install -U docker-compose==${DOCKER_COMPOSE_VERSION} &&\
+    rm -rf `find / -regex '.*\.py[co]' -or -name apk` &&\
+    adduser jenkins docker
+
 USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
